@@ -1,0 +1,3 @@
+[submodule "fp-sound"]
+	path = fp-sound
+	url = git@github.com:LaOwlLol/fp-sound.git
