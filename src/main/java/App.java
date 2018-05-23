@@ -8,11 +8,13 @@ import java.io.PrintStream;
 public class App {
 
     public static void main(String[] args) {
-        PrintMixers(System.out);
+        MixerService.MixerDetails(MixerService.SystemMixers()).forEach(System.out::println);
+        System.out.println("---------------------------------------------------------------");
+        MixerService.MixerDetails(MixerService.AppropriateMixers()).forEach(System.out::println);
+        System.out.println("---------------------------------------------------------------");
+        MixerService.SpeakerPort().ifPresent(line -> System.out.println(MixerService.LineDetails(line)));
+        MixerService.LineOutPort().ifPresent(line -> System.out.println(MixerService.LineDetails(line)));
     }
 
-    private static void PrintMixers(PrintStream out) {
-        out.println("Mixers:");
-        MixerService.ListMixers().forEach(out::println);
-    }
+
 }
