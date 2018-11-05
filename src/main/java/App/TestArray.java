@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TestArray extends Application {
 
     private AudioDirectory ad;
+    private FpSoundEngine soundEngine;
 
     public TestArray() {
         MixerService.MixerDetails(MixerService.SystemMixers()).forEach(System.out::println);
@@ -33,6 +34,7 @@ public class TestArray extends Application {
         LineService.SystemSourceDataLine(FormatService.PREFERRED_FORMAT).ifPresent(line -> System.out.println(LineService.LineDetails(line)));
 
         ad = new AudioDirectory(Paths.get(System.getProperty("user.home"), "/fpAudio/Test"));
+        this.soundEngine = new FpSoundEngine();
     }
 
     @Override
@@ -53,7 +55,7 @@ public class TestArray extends Application {
                 Button b = new Button(key);
                 b.setOnAction(new EventHandler<ActionEvent>() {
                     @Override public void handle(ActionEvent e) {
-                        FpSoundEngine.PlaySound(audio);
+                        soundEngine.PlaySound(audio);
                     }
                 });
                 i.getAndIncrement();
@@ -64,4 +66,10 @@ public class TestArray extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
+    @Override
+    public void stop() {
+        this.soundEngine.shutDownEngine();
+    }
+
 }
