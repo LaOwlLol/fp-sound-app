@@ -1,1 +1,1 @@
-## A simple application to demostrate the fp-sound library.
+## A simple application to demonstrate the fp-sound library.
