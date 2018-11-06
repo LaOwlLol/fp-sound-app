@@ -1,6 +1,6 @@
 .gradle
 /build/
-/fp-sound/
+fp-sound
 
 # Ignore Gradle GUI config
 gradle-app.setting
